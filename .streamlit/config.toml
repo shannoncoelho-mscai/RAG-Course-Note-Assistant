@@ -1,0 +1,6 @@
+# Streamlit runtime config
+# maxUploadSize: MB cap for st.file_uploader — aligned with the API's
+# 30 MB /upload guard (Cloud Run platform cap is 32 MB). Keeps the UI
+# message honest and blocks oversized files before upload time is wasted.
+[server]
+maxUploadSize = 30

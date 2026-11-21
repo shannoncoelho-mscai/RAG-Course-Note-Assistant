@@ -1,0 +1,33 @@
+# Secrets
+.env
+.env.local
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Generated artifacts
+index/
+
+# Private corpus 
+*.pdf
+
+# Local build artifacts
+/images/
+/report/
+inspect_chunks.py
+src/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+
+# Terraform state + working dir 
+/infra/.terraform/
+/infra/*.tfstate
+/infra/*.tfstate.backup
+/infra/*.tfplan

@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install (frozen lockfile)
+        run: uv sync --frozen
+
+      - name: Lint (ruff)
+        run: uvx ruff check api generate retrieve ui tests
+
+      - name: Tests
+        run: uv run pytest -q
+
+      - name: Build Docker image
+        run: docker build -t rag-assistant:ci .
+
+      - name: Trivy scan (vulnerability + secrets)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: rag-assistant:ci
+          severity: HIGH,CRITICAL
+          exit-code: 1
+          # Only fail on CVEs with an available fix — unpatched base-image
+          # (debian slim) CVEs are informational, not actionable.
+          ignore-unfixed: true
+          scanners: vuln,secret

@@ -1,0 +1,35 @@
+# Cloud Build pipeline for rag-ui (fully hardcoded — no substitutions).
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --no-cache
+      - -t
+      - asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/rag-ui:$COMMIT_SHA
+      - -f
+      - Dockerfile.ui
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/rag-ui:$COMMIT_SHA
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - services
+      - update
+      - rag-ui
+      - --platform=managed
+      - --image=asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/rag-ui:$COMMIT_SHA
+      - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA
+      - --region=asia-south1
+      - --quiet
+
+images:
+  - asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/rag-ui:$COMMIT_SHA
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,38 @@
+# Cloud Build pipeline: build → push to Artifact Registry → deploy to Cloud Run.
+# Shared by both deploy triggers (rag-api-deploy, rag-ui-deploy); each trigger
+# sets only _SERVICE_NAME and _DOCKERFILE. Project constants are hardcoded to
+# avoid substitution-whitespace failures. Run on every push to main.
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --no-cache
+      - -t
+      - asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/$_SERVICE_NAME:$COMMIT_SHA
+      - -f
+      - $_DOCKERFILE
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/$_SERVICE_NAME:$COMMIT_SHA
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - services
+      - update
+      - $_SERVICE_NAME
+      - --platform=managed
+      - --image=asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/$_SERVICE_NAME:$COMMIT_SHA
+      - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA
+      - --region=asia-south1
+      - --quiet
+
+images:
+  - asia-south1-docker.pkg.dev/rag-course-assistant-514120/cloud-run-source-deploy/rag-course-assistant/$_SERVICE_NAME:$COMMIT_SHA
+
+options:
+  logging: CLOUD_LOGGING_ONLY

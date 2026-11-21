@@ -1,0 +1,12 @@
+# Trivy vulnerability ignore list
+# Format: one CVE ID per line, with justification below each entry.
+# Scanned by ci.yml Trivy gate (severity: HIGH,CRITICAL, exit-code: 1).
+
+# CVE-2025-47273 — setuptools: Path Traversal in PackageIndex (HIGH)
+# Installed 70.3.0 ships inside the python:3.11-slim base image's Debian
+# python3-setuptools system package (/usr/lib/python3/dist-packages).
+# Debian 13 does not ship a fixed version, so it cannot be patched in-image.
+# NOT exploitable in this service: setuptools is a build-time packaging tool;
+# the runtime API (uvicorn/FastAPI + RAG pipeline) never imports setuptools
+# or invokes PackageIndex. Re-evaluate if the base image updates.
+CVE-2025-47273

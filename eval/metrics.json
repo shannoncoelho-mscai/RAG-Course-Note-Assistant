@@ -1,0 +1,167 @@
+{
+  "hit_at_k": 1.0,
+  "mrr": 1.0,
+  "refusal_accuracy": 1.0,
+  "answerable_passed": "10/10",
+  "refusals_passed": "2/2",
+  "per_question": [
+    {
+      "id": "q01",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p27_c031",
+        "AI Engineering:p93_c121",
+        "AI Engineering:p143_c187"
+      ],
+      "gold": [
+        "AI Engineering:p27_c031"
+      ]
+    },
+    {
+      "id": "q02",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p66_c089",
+        "AI Engineering:p232_c326",
+        "AI Engineering:p223_c310"
+      ],
+      "gold": [
+        "AI Engineering:p232_c326",
+        "AI Engineering:p66_c089"
+      ]
+    },
+    {
+      "id": "q03",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p73_c096",
+        "AI Engineering:p232_c326",
+        "AI Engineering:p36_c044"
+      ],
+      "gold": [
+        "AI Engineering:p73_c096"
+      ]
+    },
+    {
+      "id": "q04",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p73_c096",
+        "AI Engineering:p34_c041",
+        "AI Engineering:p232_c326"
+      ],
+      "gold": [
+        "AI Engineering:p73_c096"
+      ]
+    },
+    {
+      "id": "q05",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p232_c326",
+        "AI Engineering:p73_c096",
+        "AI Engineering:p139_c182"
+      ],
+      "gold": [
+        "AI Engineering:p139_c182",
+        "AI Engineering:p232_c326"
+      ]
+    },
+    {
+      "id": "q06",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p4_c004",
+        "AI Engineering:p2_c002",
+        "AI Engineering:p63_c083"
+      ],
+      "gold": [
+        "AI Engineering:p2_c002",
+        "AI Engineering:p4_c004"
+      ]
+    },
+    {
+      "id": "q07",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p233_c327",
+        "AI Engineering:p180_c244",
+        "AI Engineering:p183_c247"
+      ],
+      "gold": [
+        "AI Engineering:p180_c244",
+        "AI Engineering:p233_c327"
+      ]
+    },
+    {
+      "id": "q08",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p28_c032",
+        "AI Engineering:p29_c033",
+        "AI Engineering:p143_c187"
+      ],
+      "gold": [
+        "AI Engineering:p28_c032",
+        "AI Engineering:p29_c033"
+      ]
+    },
+    {
+      "id": "q09",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p73_c096",
+        "AI Engineering:p89_c115",
+        "AI Engineering:p88_c114"
+      ],
+      "gold": [
+        "AI Engineering:p73_c096"
+      ]
+    },
+    {
+      "id": "q10",
+      "type": "exact",
+      "rank": 1,
+      "rr": 1.0,
+      "retrieved": [
+        "AI Engineering:p397_c549",
+        "AI Engineering:p356_c493",
+        "AI Engineering:p331_c458"
+      ],
+      "gold": [
+        "AI Engineering:p356_c493",
+        "AI Engineering:p397_c549"
+      ]
+    },
+    {
+      "id": "q11",
+      "type": "refusal",
+      "pass": true,
+      "retrieved": []
+    },
+    {
+      "id": "q12",
+      "type": "refusal",
+      "pass": true,
+      "retrieved": []
+    }
+  ]
+}

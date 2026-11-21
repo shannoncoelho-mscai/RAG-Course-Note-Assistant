@@ -1,0 +1,57 @@
+[project]
+name = "cloud-endsem"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Shubhampm18", email = "shubhampmalik4@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "faiss-cpu>=1.15.1",
+    "fastapi>=0.162.0",
+    "google-cloud-bigquery>=3.47.0",
+    "google-cloud-storage>=3.17.1",
+    "google-genai>=3.0.0",
+    "httpx>=0.28.1",
+    "openai>=3.46.0",
+    "pydantic>=2",
+    "pymupdf>=2.1",
+    "pytest>=9.2.0",
+    "python-dotenv>=1.2.4",
+    "rank-bm25>=0.2.2",
+    "sentence-transformers>=6.2.0",
+    "streamlit>=1.67.0",
+    "uvicorn>=0.54.0",
+    "torch>=2.0",
+    "python-multipart>=0.0.33",
+]
+
+
+[tool.ruff]
+line-length = 120
+# Lint api/, generate/, retrieve/, ui/, tests/ only (matches CI invocation)
+include = ["api/*.py", "generate/*.py", "retrieve/*.py", "ui/*.py", "ui/pages/*.py", "tests/*.py", "ingest/*.py", "eval/*.py"]
+
+[tool.ruff.lint]
+# BLE001/S110: broad `except Exception` is intentional — graceful degradation
+# is the core resilience design (Refusal paths, empty-index fallback).
+# B008: `File(...)`/`Query(...)` in argument defaults is FastAPI's own
+# dependency-injection pattern — the framework's canonical usage.
+ignore = ["BLE001", "S110", "B008"]
+
+# CPU-only torch — the embedder (BGE-small) runs on CPU by design (no GPU
+# in Cloud Run / CI). Without this, Linux torch pulls ~6GB of NVIDIA CUDA
+# packages (cublas, cudnn, triton...) and blows the GH Actions disk limit.
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+# NOTE: no [build-system] section — this is an application, not a library.
+# uv sync therefore installs only dependencies and never tries to build
+# the project itself (which would fail in CI: src/ is not committed).
+

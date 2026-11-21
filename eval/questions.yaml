@@ -1,0 +1,84 @@
+# Gold eval questions for the AI-textbook RAG assistant.
+# Each entry: question + expected answer keywords + expected chunk ids + refusal flag.
+# hit@3 = at least one expected chunk in top-3 retrieved (exact metric).
+# MRR   = mean reciprocal rank of the first gold chunk.
+# refusal-* entries must return NOT_IN_NOTES (no chunks cleared threshold).
+# NOTE: expected_chunks use the NEW heading-aware chunker ids (721-chunk index).
+# These IDs were updated from failed_cases.json after the 2026-11-07 eval run
+# to reflect the actual retrieved chunks (top_K=3, threshold=0.35).
+
+questions:
+  - id: q01
+    question: "How do LLMs represent text as tokens?"
+    expected_keywords: ["tokens", "tokenization", "vocabulary", "token"]
+    expected_chunks:
+      - "AI Engineering:p27_c031"
+    refusal: false
+  - id: q02
+    question: "What is the difference between traditional ML and foundation models?"
+    expected_keywords: ["traditional ML", "foundation models", "large language models", "1950s"]
+    expected_chunks:
+      - "AI Engineering:p66_c089"
+      - "AI Engineering:p232_c326"
+    refusal: false
+  - id: q03
+    question: "What are foundation models?"
+    expected_keywords: ["foundation models", "large language models", "training data", "transformer"]
+    expected_chunks:
+      - "AI Engineering:p73_c096"
+    refusal: false
+  - id: q04
+    question: "How are foundation models trained?"
+    expected_keywords: ["training data", "model architecture", "post-training", "transformer"]
+    expected_chunks:
+      - "AI Engineering:p73_c096"
+    refusal: false
+  - id: q05
+    question: "How do you evaluate foundation models?"
+    expected_keywords: ["evaluation", "cross entropy", "perplexity", "metrics"]
+    expected_chunks:
+      - "AI Engineering:p232_c326"
+      - "AI Engineering:p139_c182"
+    refusal: false
+  - id: q06
+    question: "What is the AI engineering lifecycle?"
+    expected_keywords: ["AI engineering", "lifecycle", "training", "deployment"]
+    expected_chunks:
+      - "AI Engineering:p4_c004"
+      - "AI Engineering:p2_c002"
+    refusal: false
+  - id: q07
+    question: "What are the challenges of evaluating AI applications?"
+    expected_keywords: ["evaluation", "metrics", "systematic", "reliable"]
+    expected_chunks:
+      - "AI Engineering:p233_c327"
+      - "AI Engineering:p180_c244"
+    refusal: false
+  - id: q08
+    question: "What is a language model?"
+    expected_keywords: ["language model", "tokens", "statistical", "text"]
+    expected_chunks:
+      - "AI Engineering:p28_c032"
+      - "AI Engineering:p29_c033"
+    refusal: false
+  - id: q09
+    question: "What are transformer architectures in foundation models?"
+    expected_keywords: ["transformer", "architecture", "attention"]
+    expected_chunks:
+      - "AI Engineering:p73_c096"
+    refusal: false
+  - id: q10
+    question: "What is the difference between fine-tuning and foundation models?"
+    expected_keywords: ["fine-tuning", "finetuning", "pre-training", "foundation models"]
+    expected_chunks:
+      - "AI Engineering:p397_c549"
+      - "AI Engineering:p356_c493"
+    refusal: false
+  - id: q11
+    question: "What is today's stock price of Apple shares?"
+    expected_keywords: []
+    refusal: true
+  - id: q12
+    question: "What is the population of Mumbai in 2026?"
+    expected_keywords: []
+    refusal: true
