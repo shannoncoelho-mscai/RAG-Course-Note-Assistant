@@ -31,3 +31,5 @@ Thumbs.db
 /infra/*.tfstate
 /infra/*.tfstate.backup
 /infra/*.tfplan
+# Terraform plan output
+/infra/plan.txt
